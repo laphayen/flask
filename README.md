@@ -55,7 +55,49 @@ Python Web Framework
 * 디버깅이나 테스트
 
 
-# 플라스크 구현
+# 플라스크 실행하기
+## 1. 파이썬 스크립트(코드) 작성
+<pre><code># flask 클래스를 import 한다.
+from flask import Flask
+
+# flask 클래스를 인스턴스화한다.
+app = Flask(__name__)
+
+# URL과 실행할 함수를 매핑한다.
+@app.route("/")
+def index():
+    return "Hello, Flask!"
+</code></pre>
 
 
+## 2. 환경 변수를 설정
+* FLASK_APP - 앱의 위치
+* FLASK_ENV - development(디버그 모드 on) 또는 production 지정
+* 디렉터리 이동
+<pre><code>(venv) $ cd app.py의 위치
+</code></pre>
 
+* 환경변수 설정
+<pre><code>(venv) $ export FLASK_APP=app.py
+(venv) $ export FLASK_ENV=development
+</code></pre>
+
+
+## 3. flask run 명령어 실행
+<pre><code>(venv) $ flask run
+</code></pre>
+
+# .env 환경 변수 설정
+* export로 설정한 환경 변수는 콘솔에서 로그아웃 시 제거
+* .env로 앱 단위로 환경 변수를 설정
+* .flaskenv 사용 가능
+* python-dotenv 패키지 사용
+<pre><code>pip install python-dotenv
+</code></pre>
+
+
+# 애플리케이션 루트
+* 앱을 실행하는 현재 디렉터리, 모듈, 패키지를 읽어 들이는 경로는 애플리케이션 루트로 결정
+* 플라스크 내부에서 python-dotenv 패키지를 호출 python-dotenv 설치 후, .env가 없는 경우에 애플리케이션 루트가 바뀜
+* -> .env 없는 경우 - flask run 명령어를 실행한 디렉터리가 애플리케이션 루트
+* -> .env 있는 경우 - .env 파일이 있는 디렉터리가 애플리케이션 루트
