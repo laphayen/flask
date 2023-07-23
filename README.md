@@ -101,3 +101,59 @@ def index():
 * 플라스크 내부에서 python-dotenv 패키지를 호출 python-dotenv 설치 후, .env가 없는 경우에 애플리케이션 루트가 바뀜
 * -> .env 없는 경우 - flask run 명령어를 실행한 디렉터리가 애플리케이션 루트
 * -> .env 있는 경우 - .env 파일이 있는 디렉터리가 애플리케이션 루트
+
+
+# 라우팅 이용하기
+* 라우팅 - 요청한 곳의 URL와 실제로 처리를 담당하는 함수를 연결하는 작업을 가리킨다.
+* 함수 앞의 데코레이터라는 함수 @app.route()를 추가하여 루트를 추가
+<pre><code>@app.route("/hello")
+def hello():
+    return "hello, world!"
+</code></pre>
+
+* 라우팅 정보 확인하기 - flask routes 명령어
+<pre><code>(venv) $ flask routes
+</code></pre>
+
+
+# HTML 폼에서 이용하는 HTTP 메서드
+* HTTP 메서드 - 클라이언트가 서버에 대해서 요청을 송신할 때에 서버에게 실행하기 를 바라는 조작을 전달하기 위해 사용, HTML 폼에서 GET 메서드, POST 메서드를 사용.
+* GET 메서드 - 검색 등 리소스를 얻는 경우에 이용, 폼이 아닌 평소의 브라우징도
+* POST 메서드 - 로그인이나 문의 송신 등 폼의 값을 등록, 갱신하는 경우에 이용
+
+# 엔드포인트에 이름 붙이기
+* 엔드포인트 - 일반적으로 API에 접근하기 위한 URI를 가리키는데, 플라스크에서는 URI와 연결된 함수명 또는 함수에 붙인 이름
+* 기본값으로 @app.route로 수식된 함수명
+* 엔드포인트를 미지정 시 함수명이 엔드포인트명으로 변경
+<pre><code>@app.route("/", endpoint="dendpoint-name")
+</code></pre>
+
+* * *
+
+# 허가할 HTTP 메서드 지정
+* @app.route 데코레이터로 허가할 HTTP 메서드를 지정
+* methods에 HTTP 메서드명을 지정, 미지정 시 GET이 기본값
+<pre><code>@app.route("/", methods=["GET", "POST"]
+</code></pre>
+
+* 플라스크 버전 2.0 이후는 route() 생략
+<pre><code>@app.get("/hello")
+@app.post("/hello")
+</code></pre>
+
+* 예시 - GET, POST 메서드 요청 받음.
+<pre><code>@app.route("/hello",methods=["GET", "POST"])
+def hello():
+    return "Hello, Flask!"
+</code></pre>
+
+* * *
+
+# Rule에 변수 지정
+* @app.route 데코레이터의 Rule에 변수 지정
+* <변수명> 으로 지정
+<pre><code>@app.route("/hello/<name>", methods=["GET", "POST"], endpoint="hello-endpoint")
+def hello(name):
+    return f"Hello, {name}!"
+</code></pre>
+
