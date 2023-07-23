@@ -157,3 +157,47 @@ def hello(name):
     return f"Hello, {name}!"
 </code></pre>
 
+* <컨버터: 변수명> - 옵션으로 컨버터 타입으로 데이터의 타입 지정
+* string - 슬래시가 없는 텍스트
+* int - 양의 정수
+* float - 양의 부동 상수점
+* path - 슬래시가 있는 텍스트를 허용
+* uuid - UUID 문자열
+
+* * *
+
+# 템플릿 엔진 사용
+* 템플릿(모형)과 데이터를 합성하여 성과 문서를 출력하는 소프트웨어
+* 플라스크 기본 템플릿 엔진, 기본 설치 시 동시 설치 - Jinja2
+* render_template 함수에 템플릿의 이름과 키워드 인수로서 변수를 넘겨 사용
+* 템플릿에서 {{ 변수명 }} 이라고 기술한 부분은 Jinja2가 변수를 전개하여 렌더링
+
+* * *
+
+# Jinja2의 사용법
+* 변수 값 출력 - 변수의 값 표시 {{ }}, render_template의 2번째 인수 이후에 설정한 키워드 인수 또는 사전 오브젝트에 지정한 변수명 사용
+<pre><code><h1>Name: {{ name }}</h1></code></pre>
+
+* 조건식 if문의 사용법 - {% %}사용
+<pre><code>{% if name %}
+<h1>Name: {{ name }}>/h1>
+{% else %}
+<h1>Name:</h1>
+{% endif %}
+</code></pre>
+
+* 반복 for문 - {% %} 사용
+<pre><code><ul>
+    {% for user in users %}
+    <li><a href="{{ user.url }}">{{ user.username }}</a></li>
+    {% endfor %}
+</ul>
+</code></pre>
+
+* * *
+
+# url_for 함수를 사용해서 URL 생성하기
+* 엔드포인트의 URL을 사용하기 위해 url_for 함수 사용
+* 통상 HTML 파일이나 View 파일에 /name과 같이 기술, 이것을 url_for("name")와 같이 기술
+* 엔드 포인트에 대응하는 Rule이 바뀐다고 해도 HTML 파일이나 View에 기술하는 URL을 변경할 필요x
+
