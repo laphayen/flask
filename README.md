@@ -196,13 +196,22 @@ def hello(name):
 
 * * *
 
-# 정적 파일 사용
-* HTML, CSS, JS
-
-* * *
-
 # url_for 함수를 사용해서 URL 생성하기
 * 엔드포인트의 URL을 사용하기 위해 url_for 함수 사용
 * 통상 HTML 파일이나 View 파일에 /name과 같이 기술, 이것을 url_for("name")와 같이 기술
 * 엔드 포인트에 대응하는 Rule이 바뀐다고 해도 HTML 파일이나 View에 기술하는 URL을 변경할 필요x
 
+* * *
+
+# 정적 파일 사용 - HTML, CSS, JS
+* static 디렉터리애 배치
+* static 엔드 포인트 사용
+<pre><code>url_for("static", filename="style.css)
+</code></pre>
+
+* * *
+
+# 애플리케이션 컨텍스트
+* 요청으로 앱 레벨의 데이터를 이용
+* current_app - 액티브 앱(실행 중의 앱)의 인스턴스
+* g - 요청을 통해 이용할 수 있는 전역 임시(일시) 영억, 요청마다 리셋
