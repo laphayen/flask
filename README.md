@@ -196,6 +196,11 @@ def hello(name):
 
 * * *
 
+# 정적 파일 사용
+* HTML, CSS, JS
+
+* * *
+
 # url_for 함수를 사용해서 URL 생성하기
 * 엔드포인트의 URL을 사용하기 위해 url_for 함수 사용
 * 통상 HTML 파일이나 View 파일에 /name과 같이 기술, 이것을 url_for("name")와 같이 기술
