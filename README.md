@@ -225,6 +225,7 @@ def hello(name):
 * 
 
 * * *
+
 # 컨텍스트의 라이프 사이클
 * 1. 요청 처리 시작
   2. 애플리케이션 컨텍스트 작성(스택으로 push)
@@ -232,3 +233,26 @@ def hello(name):
   4. 요청 처리를 종료
   5. 요청 컨텍스트를 삭제(스택으로부터 pop)
   6. 애플리케이션 컨텍스트 삭제(스텍으로부터 pop)
+
+* * *
+
+# PRG 패턴
+* POST, REDIRECT, GET
+* 폼 데이터를 POST하면 REDIRECT하여 GET한 페이지를 표시하는 패턴
+* 사용x -> 폼 데이터를 POST한 다음에 리로드하면 본래 POST한 콘텐츠가 재송신된어 폼 데이터가 이중으로 전송될 가능성 있다.
+
+* * *
+
+# POST된 폼의 값 얻기
+* request의 form 속성 사용
+<pre><code>username = request.form["uesrname"]
+email = request.form["email"]
+description = request.form["description"]</code></pre>
+
+* * *
+
+# Flash 메시지
+* 동작 실행 후에 간단한 메시지를 표시하는 긴능입니다. 완료 시나 오류 발생 시 등 일시적으로 메시지를 표시할 때 사용
+* 유효성 검증(밸리데이션) 추가하기 - 문의 폼 화면에 유효성 검증(입력 체크 처리)을 추가, 입력 체크 시 오류가있으면 Flash 메시지를 사용하여 한 번만 오류 정보를 표시
+* flash 함수를 사용하여 설정, 템플릿에서 get_flashed_messages 함수를 사용하여 치득해 표시합니다.
+* Flash 메시지를 이용하려면 세션이 필요하므로 config의 SECRET_KEY를 설정
